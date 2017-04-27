@@ -1,0 +1,12 @@
+[
+  {
+    "id": "go",
+    "name": "Go Buildpack",
+    "repo": "cloudfoundry/go-buildpack"
+  },
+  {
+    "id": "ruby",
+    "name": "Ruby Buildpack",
+    "repo": "cloudfoundry/ruby-buildpack"
+  }
+]
