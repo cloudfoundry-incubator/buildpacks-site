@@ -5,8 +5,48 @@
     "repo": "cloudfoundry/go-buildpack"
   },
   {
-    "id": "ruby",
-    "name": "Ruby Buildpack",
-    "repo": "cloudfoundry/ruby-buildpack"
+    "id": "php",
+    "name": "PHP Buildpack",
+    "repo": "cloudfoundry/php-buildpack"
+  },
+  {
+    "id": "staticfile",
+    "name": "Staticfile Buildpack",
+    "repo": "cloudfoundry/staticfile-buildpack"
+  },
+  {
+    "id": "python",
+    "name": "Python Buildpack",
+    "repo": "cloudfoundry/python-buildpack"
+  },
+  {
+    "id": "nodejs",
+    "name": "Nodejs Buildpack",
+    "repo": "cloudfoundry/nodejs-buildpack"
+  },
+  {
+    "id": "binary",
+    "name": "Binary Buildpack",
+    "repo": "cloudfoundry/binary-buildpack"
+  },
+  {
+    "id": "java",
+    "name": "Java Buildpack",
+    "repo": "cloudfoundry/java-buildpack"
+  },
+  {
+    "id": "dotnet",
+    "name": "Dotnet Core Buildpack",
+    "repo": "cloudfoundry/dotnet-core-buildpack"
+  },
+  {
+    "id": "hwc",
+    "name": "HWC Buildpack",
+    "repo": "cloudfoundry-incubator/hwc-buildpack"
+  },
+  {
+    "id": "multi",
+    "name": "Multi Buildpack",
+    "repo": "cloudfoundry-incubator/multi-buildpack"
   }
 ]
