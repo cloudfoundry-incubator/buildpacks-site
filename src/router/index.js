@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Buildpacks from '@/components/Buildpacks'
-import Buildpack from '@/components/Buildpack'
+import BuildpackIndex from '@/components/BuildpackIndex'
+import BuildpackDetail from '@/components/BuildpackDetail'
 
 Vue.use(Router)
 
@@ -10,19 +10,16 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Buildpacks',
-      component: Buildpacks
+      name: 'BuildpackIndex',
+      component: BuildpackIndex,
+      meta: { pageClass: 'bg-near-white' }
     },
     {
-      path: '/index.html',
-      name: 'Buildpacks',
-      component: Buildpacks
-    },
-    {
-      path: '/buildpacks/:id',
-      name: 'Buildpack',
-      component: Buildpack,
-      props: true
+      path: '/buildpacks/:id/:version',
+      name: 'BuildpackDetail',
+      props: true,
+      component: BuildpackDetail,
+      meta: { pageClass: 'bg-white' }
     }
   ]
 })

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 // import 'whatwg-fetch'
+import YAML from 'js-yaml'
 
 Vue.mixin({
   beforeCreate () {
@@ -12,7 +13,13 @@ Vue.mixin({
       if (this._fetch !== undefined) {
         return this._fetch(url, resolve, reject)
       } else {
-        return fetch(url).then(resp => resp.json()).then(resolve).catch(reject)
+        var p = fetch(url)
+        if (url.endsWith('.yml')) {
+          p = p.then(resp => resp.text()).then(txt => YAML.safeLoad(txt))
+        } else {
+          p = p.then(resp => resp.json())
+        }
+        p.then(resolve).catch(reject)
       }
     }
   }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import './fetch'
 import App from './App'
 import router from './router'
+import 'tachyons'
 
 Vue.config.productionTip = false
 

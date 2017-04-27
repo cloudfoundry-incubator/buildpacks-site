@@ -15,6 +15,9 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "js-yaml": "^3.8.3",
+    "moment": "^2.18.1",
+    "tachyons": "^4.7.1",
     "vue": "^2.2.6",
     "vue-router": "^2.3.1",
     "whatwg-fetch": "^2.0.3"

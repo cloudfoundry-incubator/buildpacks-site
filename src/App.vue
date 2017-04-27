@@ -1,24 +1,52 @@
 <template>
-  <div id="app">
-    <Top></Top>
+  <div id="app" class="min-vh-100" :class="pageClass">
+    <SiteHeader></SiteHeader>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Top from '@/components/Top'
+import SiteHeader from '@/components/SiteHeader'
 
 export default {
   name: 'app',
-  components: { Top }
+  components: {
+    SiteHeader
+  },
+  computed: {
+    pageClass: function () {
+      return this.$route.meta.pageClass
+    }
+  }
 }
 </script>
 
 <style>
-  * { box-sizing: border-box; }
-  body { margin: 0; padding: 0; font-family: sans-serif; }
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  @import url(http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+
+  body, html {
+    height: 100%;
+    width: 100%;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  hr {
+    border-top: 0;
+  }
+
+  .cf-blue {
+  	color: #0c9ed5;
+  }
+
+  .bg-cf-blue {
+  	background-color: #0c9ed5;
+  }
+
+  .drop-shadow {
+  	box-shadow: 0 2px 4px rgba(50,50,93,.1);
+  }
 </style>
