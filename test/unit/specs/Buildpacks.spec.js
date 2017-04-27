@@ -1,11 +1,27 @@
 import Vue from 'vue'
 import Buildpacks from '@/components/Buildpacks'
+import router from '@/router'
 
 describe('Buildpacks.vue', () => {
-  it('should render correct contents', () => {
+  var vm
+  beforeEach(() => {
     const Constructor = Vue.extend(Buildpacks)
-    const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.hello h1').textContent)
-      .to.equal('Welcome to Your Vue.js App')
+    vm = new Constructor({ router: router }).$mount()
+  })
+
+  it('should render list', () => {
+    expect(vm.$el.querySelectorAll('li'))
+      .to.have.length.above(8)
+  })
+
+  it('should list buildpack names', () => {
+    const text = vm.$el.querySelector('ul').textContent
+    expect(text).to.contain('Go Buildpack')
+    expect(text).to.contain('Ruby Buildpack')
+  })
+
+  it('should list github', () => {
+    const text = vm.$el.querySelector('ul').textContent
+    expect(text).to.contain('Github')
   })
 })
