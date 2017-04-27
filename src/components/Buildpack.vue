@@ -43,12 +43,13 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      this.$http.get(`https://api.github.com/repos/${this.buildpack.repo}/releases`).then(resp => {
-        this.buildpack.releases = resp.data
-      }, err => {
-        alert(err)
-        console.log(err)
-      })
+      this.$fetch(`https://api.github.com/repos/${this.buildpack.repo}/releases`,
+        (data) => { this.buildpack.releases = data; true },
+        (err) => {
+          alert(err)
+          console.log(err)
+        }
+      )
     }
   }
 }

@@ -14,6 +14,11 @@ export default new Router({
       component: Buildpacks
     },
     {
+      path: '/index.html',
+      name: 'Buildpacks',
+      component: Buildpacks
+    },
+    {
       path: '/buildpacks/:id',
       name: 'Buildpack',
       component: Buildpack,
