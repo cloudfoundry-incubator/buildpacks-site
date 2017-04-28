@@ -2,56 +2,67 @@
   {
     "id": "ruby",
     "name": "Ruby Buildpack",
-    "repo": "cloudfoundry/ruby-buildpack"
+    "repo": "cloudfoundry/ruby-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/ruby/index.html"
   },
   {
     "id": "go",
     "name": "Go Buildpack",
-    "repo": "cloudfoundry/go-buildpack"
+    "repo": "cloudfoundry/go-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/go/index.html"
   },
   {
     "id": "php",
     "name": "PHP Buildpack",
-    "repo": "cloudfoundry/php-buildpack"
+    "repo": "cloudfoundry/php-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/php/index.html"
   },
   {
     "id": "staticfile",
     "name": "Staticfile Buildpack",
-    "repo": "cloudfoundry/staticfile-buildpack"
+    "repo": "cloudfoundry/staticfile-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/staticfile/index.html"
   },
   {
     "id": "python",
     "name": "Python Buildpack",
-    "repo": "cloudfoundry/python-buildpack"
+    "repo": "cloudfoundry/python-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/python/index.html"
   },
   {
     "id": "nodejs",
     "name": "Nodejs Buildpack",
-    "repo": "cloudfoundry/nodejs-buildpack"
+    "repo": "cloudfoundry/nodejs-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/node/index.html"
   },
   {
     "id": "binary",
     "name": "Binary Buildpack",
-    "repo": "cloudfoundry/binary-buildpack"
+    "repo": "cloudfoundry/binary-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/binary/index.html"
   },
   {
     "id": "java",
     "name": "Java Buildpack",
-    "repo": "cloudfoundry/java-buildpack"
+    "repo": "cloudfoundry/java-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/java/index.html"
   },
   {
     "id": "dotnet",
     "name": "Dotnet Core Buildpack",
-    "repo": "cloudfoundry/dotnet-core-buildpack"
+    "repo": "cloudfoundry/dotnet-core-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/dotnet-core/index.html"
   },
   {
     "id": "hwc",
     "name": "HWC Buildpack",
-    "repo": "cloudfoundry-incubator/hwc-buildpack"
+    "repo": "cloudfoundry-incubator/hwc-buildpack",
+    "docUrl": false
   },
   {
     "id": "multi",
     "name": "Multi Buildpack",
-    "repo": "cloudfoundry-incubator/multi-buildpack"
+    "repo": "cloudfoundry-incubator/multi-buildpack",
+    "docUrl": false
   }
 ]

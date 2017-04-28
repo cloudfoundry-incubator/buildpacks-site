@@ -1,9 +1,11 @@
 import Vue from 'vue'
-import './fetch'
 import App from './App'
 import router from './router'
+import store from './store'
+import { sync } from 'vuex-router-sync'
 import 'tachyons'
 
+sync(store, router)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

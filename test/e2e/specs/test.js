@@ -11,9 +11,13 @@ module.exports = {
     browser
       .url(devServer)
       .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.hello')
-      .assert.containsText('h1', 'Welcome to Your Vue.js App')
-      .assert.elementCount('img', 1)
+      .assert.containsText(".name", 'Ruby Buildpack')
+      .click('a[href*="/buildpacks/ruby"]')
+      .waitForElementVisible('.buildpackdetail', 5000)
+      .assert.containsText('.name', 'Ruby Buildpack')
+      .useXpath()
+      .click("//ul[@class='versions']/[contains(text(), 'v1.6.35')]")
+      .assert.containsText('h1', 'Ruby Buildpack v1.6.35')
       .end()
   }
 }

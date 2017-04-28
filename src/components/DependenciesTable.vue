@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="hasDependencies">
-      <article class="mb2">
+    <div v-if="dependencies.length > 0">
+      <article class="mb2" v-if="regularDependencies.length > 0">
         <h4 class="f5 fw6 mb3 gray">Dependencies In This Version</h4>
         <table class="f6 w-100 mw8 center" cellspacing="0">
           <thead>
@@ -29,7 +29,7 @@
           </tbody>
         </table>
       </article>
-      <article>
+      <article v-if="outdatedDependencies.length > 0">
         <h4 class="f5 fw6 mb3 gray">Outdated Dependencies</h4>
         <table class="f6 w-100 mw8 center" cellspacing="0">
           <thead>
@@ -65,8 +65,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import semver from 'semver'
 import moment from 'moment'
+import store from '../store'
 
 let today = moment()
 let current = (a) => {
@@ -76,8 +78,14 @@ let current = (a) => {
 export default {
   props: ['repo', 'version'],
   name: 'DependenciesTable',
+  store,
+  created () { this.loadManifest() },
+  watch: { '$route': 'loadManifest' },
   computed: {
-    hasDependencies () { return this.dependencies.length > 0 },
+    ...mapState([ 'manifests' ]),
+    manifest () {
+      return this.manifests[`${this.repo}-${this.version}`] || { dependencies: [], dependency_deprecation_dates: [] }
+    },
     deprecations () {
       if (!this.manifest.dependency_deprecation_dates) return []
 
@@ -110,20 +118,9 @@ export default {
       return this.dependencies.filter(a => !current(a))
     }
   },
-  data: function () {
-    return {
-      manifest: { dependencies: [], dependency_deprecation_dates: [] }
-    }
-  },
-  created () { this.fetchData() },
-  watch: { '$route': 'fetchData' },
   methods: {
-    fetchData () {
-      this.manifest = { dependencies: [] }
-
-      this.$fetch(`https://raw.githubusercontent.com/${this.repo}/${this.version}/manifest.yml`,
-        (data) => { this.manifest = data; true },
-        (err) => { console.log(err); this.error = err; true })
+    loadManifest () {
+      this.$store.dispatch('loadManifest', { repo: this.repo, version: this.version })
     }
   }
 }
