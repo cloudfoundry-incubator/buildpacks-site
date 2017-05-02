@@ -9,6 +9,7 @@ export const setReleases = (state, { id, data }) => {
 }
 
 export const setError = (state, err) => {
+  console.log('ERROR', err)
   state.error = err
 }
 

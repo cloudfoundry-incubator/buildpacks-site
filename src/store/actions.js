@@ -7,10 +7,15 @@ export const loadReleases = ({ commit, state: { buildpacks } }, id) => {
   if (buildpack.releases && buildpack.releases.length > 0) { return }
   fetch(
     `https://api.github.com/repos/${buildpack.repo}/releases`
-  ).then(resp => resp.json()).then(
-    data => commit('setReleases', { id, data }),
+  ).then(resp => {
+    if (resp.ok) {
+      return resp.json()
+    }
+    throw resp
+  }).then(
+    data => commit('setReleases', { id, data })
   ).catch(
-    err => commit('setError', err)
+    resp => resp.json().then(err => commit('setError', err.message))
   )
 }
 
@@ -20,10 +25,15 @@ export const loadRepoData = ({ commit, state: { buildpacks } }, id) => {
   if (buildpack.description) { return }
   fetch(
     `https://api.github.com/repos/${buildpack.repo}`
-  ).then(resp => resp.json()).then(
-    (data) => commit('setRepoData', { id, data }),
+  ).then(resp => {
+    if (resp.ok) {
+      return resp.json()
+    }
+    throw resp
+  }).then(
+    data => commit('setRepoData', { id, data })
   ).catch(
-    (err) => commit('setError', err)
+    resp => resp.json().then(err => commit('setError', err.message))
   )
 }
 
@@ -31,11 +41,16 @@ export const loadManifest = ({ commit, state: { manifests } }, { repo, version }
   if (manifests[`${repo}-${version}`]) { return }
   fetch(
     `https://raw.githubusercontent.com/${repo}/${version}/manifest.yml`
-  ).then(resp => resp.text()).then(
+  ).then(resp => {
+    if (resp.ok) {
+      return resp.text()
+    }
+    throw resp
+  }).then(
     txt => YAML.safeLoad(txt)
   ).then(
-    (data) => commit('setManifest', { repo, version, data }),
+    data => commit('setManifest', { repo, version, data })
   ).catch(
-    (err) => commit('setError', err)
+    resp => resp.json().then(err => commit('setError', err.message))
   )
 }
