@@ -3,66 +3,77 @@
     "id": "ruby",
     "name": "Ruby Buildpack",
     "repo": "cloudfoundry/ruby-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/ruby/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/ruby/index.html",
+    "description": "A Cloud Foundry buildpack for Ruby based apps."
   },
   {
     "id": "go",
     "name": "Go Buildpack",
     "repo": "cloudfoundry/go-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/go/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/go/index.html",
+    "description": "A Cloud Foundry buildpack for Go(lang) based apps.."
   },
   {
     "id": "php",
     "name": "PHP Buildpack",
     "repo": "cloudfoundry/php-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/php/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/php/index.html",
+    "description": "A buildpack to deploy PHP applications to Cloud Foundry based systems, such as a cloud provider or your own instance."
   },
   {
     "id": "staticfile",
     "name": "Staticfile Buildpack",
     "repo": "cloudfoundry/staticfile-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/staticfile/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/staticfile/index.html",
+    "description": "A Cloud Foundry buildpack for static content such as websites (HTML/JS/CSS)."
   },
   {
     "id": "python",
     "name": "Python Buildpack",
     "repo": "cloudfoundry/python-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/python/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/python/index.html",
+    "description": "A Cloud Foundry buildpack for Python based apps."
   },
   {
     "id": "nodejs",
     "name": "Nodejs Buildpack",
     "repo": "cloudfoundry/nodejs-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/node/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/node/index.html",
+    "description": "A Cloud Foundry buildpack for Node based apps."
   },
   {
     "id": "binary",
     "name": "Binary Buildpack",
     "repo": "cloudfoundry/binary-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/binary/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/binary/index.html",
+    "description": "A Cloud Foundry buildpack for running arbitrary binary web servers."
   },
   {
     "id": "java",
     "name": "Java Buildpack",
     "repo": "cloudfoundry/java-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/java/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/java/index.html",
+    "description": "The java-buildpack is a Cloud Foundry buildpack for running JVM-based applications."
   },
   {
     "id": "dotnet",
     "name": "Dotnet Core Buildpack",
     "repo": "cloudfoundry/dotnet-core-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/dotnet-core/index.html"
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/dotnet-core/index.html",
+    "description": "A Cloud Foundry buildpack for .NET Core applications."
   },
   {
     "id": "hwc",
     "name": "HWC Buildpack",
     "repo": "cloudfoundry-incubator/hwc-buildpack",
-    "docUrl": false
+    "docUrl": false,
+    "description": "A Cloud Foundry buildpack for Windows applications."
   },
   {
     "id": "multi",
     "name": "Multi Buildpack",
     "repo": "cloudfoundry-incubator/multi-buildpack",
-    "docUrl": false
+    "docUrl": false,
+    "description": "This buildpack allows you to run multiple buildpacks in a single staging container."
   }
 ]

@@ -1,22 +1,32 @@
 <template>
-  <div class="mb3 mb4-l ba b--black-10 drop-shadow">
-    <div class="pa3 bg-white">
-      <h1 class="name ma0 dark-gray f4">{{buildpack.name}}</h1>
-      <hr/>
-      <div class="mt3 mb1" v-if="latestVersion">
-        <h4 class="fw5 tracked ttu f7 ma0 black-50">Latest</h4>
-        <h2 class="fw5 f4 mb0 mt2">
-          <router-link class="latestversion blue link no-underline" :to="{ name: 'BuildpackDetail', params: { id: buildpack.id, version: latestVersion } }">
-            {{ latestVersion }}
-          </router-link>
-        </h2>
+  <div class="mb3 mb4-l ba b--black-10 drop-shadow bg-white">
+    <div class="pa3 flex flex-column h-100">
+      <div class="flex-auto">
+        <div class="flex items-center">
+          <h1 class="name ma0 condensed f4 fw4">{{buildpack.name}}</h1>
+          <a :href="githubUrl" target="_blank" class="github link f4 gray ml2" v-if="githubUrl">
+            <i class="icon ion-social-github mr1"></i>
+          </a>
+        </div>
+        <hr/>
+        <p class="lh-copy dark-gray">{{ buildpack.description }}</p>
       </div>
-    </div>
-    <div class="ph3 pv2 bt b--black-10" v-if="githubUrl">
-      <a :href="githubUrl" target="_blank" class="github link f6 mid-gray">
-        <i class="icon ion-social-github mr1"></i>
-        GitHub
-      </a>
+      <div class="mt3 mb1" v-if="latestVersion">
+        <div class="flex">
+          <div>
+            <h4 class="condensed f6 fw4 ma0 black-50">Latest</h4>
+            <h2 class="fw4 f5 mb0 mt2">
+              <router-link class="latestversion blue link no-underline" :to="{ name: 'BuildpackDetail', params: { id: buildpack.id, version: latestVersion } }">
+                {{ latestVersion }}
+              </router-link>
+            </h2>
+          </div>
+          <div class="ml4">
+            <h4 class="condensed f6 fw4 ma0 black-50">Released</h4>
+            <h2 class="fw4 f5 mb0 mt2 mid-gray">I don't know</h2>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

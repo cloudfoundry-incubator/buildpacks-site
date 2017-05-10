@@ -30,39 +30,51 @@ export default {
 </script>
 
 <style>
-  @import url(http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto+Mono|Roboto:400,500);
 
-  body, html {
-    height: 100%;
-    width: 100%;
-  }
+body, html {
+  height: 100%;
+  width: 100%;
+}
 
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+}
 
-  hr {
-    border-top: 0;
-  }
+.condensed {
+  font-family: 'Roboto Condensed';
+}
 
-  .cf-blue {
-  	color: #0c9ed5;
-  }
+.monospace {
+  font-family: 'Roboto Mono';
+}
 
-  .bg-cf-blue {
-  	background-color: #0c9ed5;
-  }
+hr {
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+}
 
-  .drop-shadow {
-  	box-shadow: 0 2px 4px rgba(50,50,93,.1);
-  }
+.cf-blue {
+  color: #0c9ed5;
+}
 
-  div.error {
-    background: red;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    padding: 1em;
-  }
+.bg-cf-blue {
+  background-color: #0c9ed5;
+}
+
+.drop-shadow {
+  box-shadow: 0 2px 4px rgba(50,50,93,.1);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
+
 </style>

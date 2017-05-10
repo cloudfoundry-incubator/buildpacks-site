@@ -7,9 +7,9 @@ import * as mutations from './mutations'
 
 Vue.use(Vuex)
 
-const extra = { releases: [], description: null }
+const extra = { releases: [] }
 const state = {
-  buildpacks: data.map(b => { return { ...b, ...extra } }),
+  buildpacks: data.map(b => { return { ...b, ...extra, description: b.description } }),
   manifests: {},
   error: null
 }
