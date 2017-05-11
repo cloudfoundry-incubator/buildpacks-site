@@ -15,8 +15,7 @@ module.exports = {
       .click('a[href*="/buildpacks/ruby"]')
       .waitForElementVisible('.buildpackdetail', 5000)
       .assert.containsText('.name', 'Ruby Buildpack')
-      .useXpath()
-      .click("//ul[@class='versions']/[contains(text(), 'v1.6.35')]")
+      .click('a[href*="/buildpacks/ruby/v1.6.35"]')
       .assert.containsText('h1', 'Ruby Buildpack v1.6.35')
       .end()
   }

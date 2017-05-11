@@ -1,17 +1,14 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
 import BuildpackTile from '@/components/BuildpackTile'
 import router from '@/router'
 
 describe('BuildpackTile.vue', () => {
-  var vm, buildpack, loadReleases
+  var vm, buildpack
   beforeEach(() => {
-    buildpack = { id: 'multi', name: 'Multi Buildpack', repo: 'org/name', releases: ['v1.2.3', 'v1.2.2'] }
-    loadReleases = sinon.spy()
+    buildpack = { id: 'multi', name: 'Multi Buildpack', repo: 'org/name', releases: [{name: 'v1.2.3', created_at: '2017-02-20'}, {name: 'v1.2.2', created_at: '2017-01-30'}] }
 
     const Constructor = Vue.extend(BuildpackTile)
-    const store = new Vuex.Store({ actions: { loadReleases } })
-    vm = new Constructor({ router, store, propsData: { buildpack } })
+    vm = new Constructor({ router, propsData: { buildpack } })
   })
 
   it('renders name', () => {
@@ -22,7 +19,7 @@ describe('BuildpackTile.vue', () => {
 
   it('finds latest release', () => {
     vm.$mount()
-    expect(vm.latestVersion).to.equal('v1.2.3')
+    expect(vm.latestVersion.name).to.equal('v1.2.3')
   })
 
   it('interpolates Github URL', () => {
@@ -41,4 +38,3 @@ describe('BuildpackTile.vue', () => {
     })
   })
 })
-

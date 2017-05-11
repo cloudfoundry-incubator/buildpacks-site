@@ -1,13 +1,11 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import '@/filters'
 import BuildpackDetail from '@/components/BuildpackDetail'
 import router from '@/router'
-import { match } from 'sinon'
 
 describe('BuildpackDetail.vue', () => {
-  var vm, loadRepoData
+  var vm
   beforeEach(() => {
-    loadRepoData = sinon.spy()
     const Constructor = Vue.extend(BuildpackDetail)
     const DependenciesTable = Vue.component('DependenciesTable', {
       render: function (createElement) {
@@ -20,17 +18,9 @@ describe('BuildpackDetail.vue', () => {
         return createElement('div', 'SiblingVersionListComponent')
       }
     })
-    const store = new Vuex.Store({
-      state: {
-        buildpacks: [
-          { id: 'go', name: 'Go Buildpack' },
-          { id: 'ruby', name: 'Ruby Buildpack', description: 'Best Ever', repo: 'a/b' }
-        ]
-      },
-      actions: { loadRepoData }
-    })
+    const buildpack = { id: 'ruby', name: 'Ruby Buildpack', description: 'Best Ever', repo: 'a/b' }
     router.push({ name: 'BuildpackDetail', params: { id: 'ruby', version: 'v3.2.1' } })
-    vm = new Constructor({ router, store, propsData: { version: 'v3.2.1' }, components: { DependenciesTable, SiblingVersionList } }).$mount()
+    vm = new Constructor({ router, propsData: { version: 'v3.2.1', buildpack }, components: { DependenciesTable, SiblingVersionList } }).$mount()
     vm.$mount()
   })
 
@@ -42,10 +32,6 @@ describe('BuildpackDetail.vue', () => {
   it('renders buildpack description', () => {
     var desc = vm.$el.querySelector('p.description').textContent.trim()
     expect(desc.trim()).to.equal('Best Ever')
-  })
-
-  it('calls loadRepoData upon creation', () => {
-    expect(loadRepoData).to.have.been.calledWithMatch(match.any, 'ruby', match.any)
   })
 
   it('renders github link', () => {

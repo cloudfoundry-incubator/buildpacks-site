@@ -14,15 +14,10 @@
 
 <script>
 import BuildpackTile from '@/components/BuildpackTile'
-import { mapState } from 'vuex'
-import store from '../store'
 
 export default {
   name: 'BuildpackIndex',
-  store,
-  computed: {
-    ...mapState([ 'buildpacks' ])
-  },
+  props: ['buildpacks'],
   components: {
     BuildpackTile
   }

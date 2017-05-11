@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
 import BuildpackIndex from '@/components/BuildpackIndex'
 import router from '@/router'
 
@@ -13,12 +12,8 @@ describe('BuildpackIndex.vue', () => {
         return createElement('div', { class: 'BuildpackTile' }, this.buildpack.name)
       }
     })
-    const store = new Vuex.Store({
-      state: {
-        buildpacks: [ { name: 'Go Buildpack' }, { name: 'Ruby Buildpack' }, { name: 'Multi Buildpack' } ]
-      }
-    })
-    vm = new Constructor({ router, store, components: { BuildpackTile } }).$mount()
+    const buildpacks = [ { name: 'Go Buildpack' }, { name: 'Ruby Buildpack' }, { name: 'Multi Buildpack' } ]
+    vm = new Constructor({ router, propsData: { buildpacks }, components: { BuildpackTile } }).$mount()
   })
 
   it('renders buildpack names', () => {
@@ -28,4 +23,3 @@ describe('BuildpackIndex.vue', () => {
     expect(text).to.contain('Multi Buildpack')
   })
 })
-

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import BuildpackIndex from '@/components/BuildpackIndex'
 import BuildpackDetail from '@/components/BuildpackDetail'
+import buildpacks from '../data'
 
 Vue.use(Router)
 
@@ -12,14 +13,20 @@ export default new Router({
       path: '/',
       name: 'BuildpackIndex',
       component: BuildpackIndex,
-      meta: { pageClass: 'bg-near-white' }
+      meta: { pageClass: 'bg-near-white' },
+      props: { buildpacks }
     },
     {
       path: '/buildpacks/:id/:version',
       name: 'BuildpackDetail',
-      props: true,
       component: BuildpackDetail,
-      meta: { pageClass: 'bg-white' }
+      meta: { pageClass: 'bg-white' },
+      props: (route) => {
+        return {
+          version: route.params.version,
+          buildpack: buildpacks.find(b => b.id === route.params.id)
+        }
+      }
     }
   ]
 })

@@ -65,62 +65,19 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import semver from 'semver'
-import moment from 'moment'
-import store from '../store'
-
-let today = moment()
-let current = (a) => {
-  return !a.deprecation || a.deprecation.isAfter(today)
-}
+// import semver from 'semver'
+// import moment from 'moment'
+// let today = moment()
 
 export default {
-  props: ['repo', 'version'],
+  props: ['dependencies'],
   name: 'DependenciesTable',
-  store,
-  created () { this.loadManifest() },
-  watch: { '$route': 'loadManifest' },
   computed: {
-    ...mapState([ 'manifests' ]),
-    manifest () {
-      return this.manifests[`${this.repo}-${this.version}`] || { dependencies: [], dependency_deprecation_dates: [] }
-    },
-    deprecations () {
-      if (!this.manifest.dependency_deprecation_dates) return []
-
-      return this.manifest.dependency_deprecation_dates.map((a) => {
-        return { name: a.name, match: new RegExp(a.match), date: moment(a.date) }
-      })
-    },
-    dependencies () {
-      return this.manifest.dependencies.map((a) => {
-        var validSemver = semver.valid(a.version)
-        var deprecation = ''
-        for (var d of this.deprecations) {
-          if (d.name === a.name && d.match.exec(a.version)) {
-            deprecation = d.date
-          }
-        }
-        return Object.assign(a, { validSemver, deprecation })
-      }).sort((a, b) => {
-        var cmp = a.name.localeCompare(b.name)
-        if (cmp === 0 && a.validSemver && b.validSemver) {
-          return semver.gt(b.version, a.version) ? 1 : -1
-        }
-        return cmp
-      })
-    },
     regularDependencies () {
-      return this.dependencies.filter(current)
+      return this.dependencies
     },
     outdatedDependencies () {
-      return this.dependencies.filter(a => !current(a))
-    }
-  },
-  methods: {
-    loadManifest () {
-      this.$store.dispatch('loadManifest', { repo: this.repo, version: this.version })
+      return []
     }
   }
 }
