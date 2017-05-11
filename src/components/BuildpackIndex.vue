@@ -18,15 +18,11 @@
 <script>
 import HeroSearch from '@/components/HeroSearch'
 import BuildpackTile from '@/components/BuildpackTile'
-import { mapState } from 'vuex'
-import store from '../store'
+import buildpacks from '../data'
 
 export default {
   name: 'BuildpackIndex',
-  store,
-  computed: {
-    ...mapState([ 'buildpacks' ])
-  },
+  data () { return { buildpacks } },
   components: {
     HeroSearch,
     BuildpackTile

@@ -11,15 +11,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import store from '../store'
-
 export default {
   name: 'SiblingVersionList',
-  props: [ 'id', 'versions' ],
-  store,
-  methods: mapActions(['loadReleases']),
-  created () { this.loadReleases(this.id) }
+  props: [ 'id', 'versions' ]
 }
 </script>
 

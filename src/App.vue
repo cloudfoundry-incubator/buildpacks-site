@@ -1,27 +1,19 @@
 <template>
   <div id="app" class="min-vh-100" :class="pageClass">
     <SiteHeader></SiteHeader>
-    <div v-if="error" class="error">
-      {{error}}
-    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import SiteHeader from '@/components/SiteHeader'
-import { mapState } from 'vuex'
-import store from './store'
 
 export default {
   name: 'app',
-  store,
   components: {
     SiteHeader
   },
   computed: {
-    ...mapState([ 'error' ]),
-
     pageClass: function () {
       return this.$route.meta.pageClass
     }

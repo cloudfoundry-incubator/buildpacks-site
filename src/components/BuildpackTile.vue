@@ -22,14 +22,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import store from '../store'
-
 export default {
   name: 'BuildpackTile',
   props: ['buildpack'],
-  store,
-  created () { this.loadReleases(this.buildpack.id) },
   computed: {
     githubUrl () {
       if (!this.latestVersion) { return false }
@@ -38,13 +33,10 @@ export default {
     latestVersion () {
       var releases = this.buildpack.releases
       if (releases && releases[0]) {
-        return releases[0]
+        return releases[0].name
       }
       return false
     }
-  },
-  methods: {
-    ...mapActions([ 'loadReleases' ])
   }
 }
 </script>

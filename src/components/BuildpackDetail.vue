@@ -28,12 +28,12 @@
         <p class="description f4 lh-copy measure-wide mt0 mb3">{{ buildpack.description }}</p>
       </div>
       <div class="mb2" v-if="buildpack.repo">
-        <DependenciesTable :repo="buildpack.repo" :version="version"></DependenciesTable>
+        <DependenciesTable :dependencies="release.dependencies"></DependenciesTable>
       </div>
     </div>
     <div class="w-100 w-30-ns ph4-ns mt4 mt0-ns bl-ns b--black-10" v-if="buildpack.id">
       <h4 class="f5 fw6 mb3 gray">Versions</h4>
-      <SiblingVersionList :id="buildpack.id" :versions="buildpack.releases"></SiblingVersionList>
+      <SiblingVersionList :id="buildpack.id" :versions="versions"></SiblingVersionList>
     </div>
   </div>
 </div>
@@ -42,31 +42,33 @@
 <script>
 import DependenciesTable from '@/components/DependenciesTable'
 import SiblingVersionList from '@/components/SiblingVersionList'
-import { mapState, mapActions } from 'vuex'
-import store from '../store'
+import buildpacks from '../data'
 
 export default {
   name: 'BuildpackDetail',
   props: ['version'],
-  store,
+  data () { return { buildpacks } },
   components: {
     SiblingVersionList,
     DependenciesTable
   },
   computed: {
-    ...mapState([ 'buildpacks' ]),
-
     buildpack () {
       const id = this.$route.params.id
       if (!id) { return {} }
       return this.buildpacks.find(b => b.id === id)
     },
-
+    release () {
+      const version = this.version
+      if (!version) { return {} }
+      return this.buildpack.releases.find(r => r.name === version)
+    },
+    versions () {
+      return this.buildpack.releases.map(r => r.name)
+    },
     githubUrl () {
       return `https://github.com/${this.buildpack.repo}/releases/tag/${this.version}`
     }
-  },
-  methods: mapActions([ 'loadRepoData' ]),
-  created () { this.loadRepoData(this.$route.params.id) }
+  }
 }
 </script>
