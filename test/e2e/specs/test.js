@@ -17,6 +17,7 @@ module.exports = {
       .assert.containsText('.name', 'Ruby Buildpack')
       .useXpath()
       .click("//ul[@class='versions']/[contains(text(), 'v1.6.35')]")
+      .useCss()
       .assert.containsText('h1', 'Ruby Buildpack v1.6.35')
       .end()
   }

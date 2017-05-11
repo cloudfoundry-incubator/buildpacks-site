@@ -42,22 +42,15 @@
 <script>
 import DependenciesTable from '@/components/DependenciesTable'
 import SiblingVersionList from '@/components/SiblingVersionList'
-import buildpacks from '../data'
 
 export default {
   name: 'BuildpackDetail',
-  props: ['version'],
-  data () { return { buildpacks } },
+  props: ['buildpack', 'version'],
   components: {
     SiblingVersionList,
     DependenciesTable
   },
   computed: {
-    buildpack () {
-      const id = this.$route.params.id
-      if (!id) { return {} }
-      return this.buildpacks.find(b => b.id === id)
-    },
     release () {
       const version = this.version
       if (!version) { return {} }

@@ -14,11 +14,10 @@
 
 <script>
 import BuildpackTile from '@/components/BuildpackTile'
-import buildpacks from '../data'
 
 export default {
   name: 'BuildpackIndex',
-  data () { return { buildpacks } },
+  props: ['buildpacks'],
   components: {
     BuildpackTile
   }

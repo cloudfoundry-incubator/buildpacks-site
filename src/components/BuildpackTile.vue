@@ -3,7 +3,7 @@
     <div class="pa3 flex flex-column h-100">
       <div class="flex-auto">
         <div class="flex items-center">
-          <h1 class="ma0 f4 condensed fw4">{{buildpack.name}}</h1>
+          <h1 class="name ma0 f4 condensed fw4">{{buildpack.name}}</h1>
           <a :href="githubUrl" target="_blank" class="link f4 ml2 gray">
             <i class="icon ion-social-github"></i>
           </a>
