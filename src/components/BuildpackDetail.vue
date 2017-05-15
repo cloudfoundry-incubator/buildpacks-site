@@ -1,7 +1,7 @@
 <template>
 <div class="buildpackdetail mw8 center w-100 ph3 ph4-ns pv3 pv4-ns">
   <div class="db">
-    <router-link to="/buildpacks" class="blue link f6">
+    <router-link :to="{ name: 'BuildpackIndex' }" class="blue link f6">
       <i class="icon ion-android-arrow-back mr1"></i>
       Back to Index
     </router-link>
