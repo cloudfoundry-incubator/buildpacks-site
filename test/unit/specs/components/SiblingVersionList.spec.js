@@ -30,8 +30,8 @@ describe('SiblingVersionList.vue', () => {
     )
 
     expect(links).to.deep.equal([
-      '/buildpacks/multi/v1.2.3',
-      '/buildpacks/multi/v1.2.2'
+      '#/buildpacks/multi/v1.2.3',
+      '#/buildpacks/multi/v1.2.2'
     ])
   })
 })
