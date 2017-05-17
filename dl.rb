@@ -35,7 +35,7 @@ class Manifest
 end
 
 client = Octokit::Client.new(access_token: 'fd2f75a4e73fddba7aac771d1038b016dc0f597c')
-repos = JSON.load(open('src/data.json'))
+repos = JSON.load(open('src/data/buildpacks.json'))
 data = repos.map do |data|
   puts data['name']
   repo = client.repo(data['repo'])
@@ -54,6 +54,6 @@ data = repos.map do |data|
   data
 end
 
-open('src/data.json', 'w') do |f|
+open('src/data/buildpacks.json', 'w') do |f|
   f.puts data.to_json
 end
