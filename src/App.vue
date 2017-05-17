@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="min-vh-100" :class="pageClass">
     <SiteHeader></SiteHeader>
-    <router-view></router-view>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 

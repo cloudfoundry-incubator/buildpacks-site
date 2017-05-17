@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Index from '@/components/Index'
 import BuildpackIndex from '@/components/BuildpackIndex'
 import BuildpackDetail from '@/components/BuildpackDetail'
+import DependenciesIndex from '@/components/DependenciesIndex'
 import NotFound from '@/components/NotFound'
 import buildpacks from '../data'
 
@@ -12,10 +14,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'BuildpackIndex',
-      component: BuildpackIndex,
+      redirect: 'buildpacks',
+      name: 'Index',
+      component: Index,
       meta: { pageClass: 'bg-near-white' },
-      props: { buildpacks }
+      props: { buildpacks },
+      children: [
+        { path: '/buildpacks', name: 'BuildpackIndex', props: { buildpacks }, component: BuildpackIndex },
+        { path: '/dependencies', name: 'DependenciesIndex', props: { buildpacks }, component: DependenciesIndex }
+      ]
     },
     {
       path: '/buildpacks/:id/:version',

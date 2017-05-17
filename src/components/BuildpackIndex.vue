@@ -13,12 +13,14 @@
 </template>
 
 <script>
+import Navigation from '@/components/Navigation'
 import BuildpackTile from '@/components/BuildpackTile'
 
 export default {
   name: 'BuildpackIndex',
   props: ['buildpacks'],
   components: {
+    Navigation,
     BuildpackTile
   }
 }
