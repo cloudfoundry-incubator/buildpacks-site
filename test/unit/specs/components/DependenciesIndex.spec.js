@@ -70,21 +70,21 @@ describe('DependenciesIndex.vue', () => {
     expect(vm.categorize).to.deep.equal({
       bundler: {
         '0.23.3': {
-          ruby: '5.6.8'
+          ruby: 'v5.6.8'
         }
       },
       node: {
         '2.0.0': {
-          node: '4.5.6',
-          ruby: '5.6.7'
+          node: 'v4.5.6',
+          ruby: 'v5.6.7'
         },
         '2.0.1': {
-          node: '4.5.7'
+          node: 'v4.5.7'
         }
       },
       ruby: {
         '2.2.1': {
-          ruby: '5.6.7'
+          ruby: 'v5.6.7'
         }
       }
     })
@@ -95,14 +95,25 @@ describe('DependenciesIndex.vue', () => {
       {
         name: 'node',
         buildpacks: [
-          { depVersion: '2.0.1', bpID: 'node', bpName: 'Node Buildpack', bpVersion: '4.5.7' },
-          { depVersion: '2.0.0', bpID: 'node', bpName: 'Node Buildpack', bpVersion: '4.5.6' },
-          { depVersion: '2.0.0', bpID: 'ruby', bpName: 'Ruby Buildpack', bpVersion: '5.6.7' }
+          { depVersion: '2.0.1', bpID: 'node', bpName: 'Node Buildpack', bpVersion: 'v4.5.7' },
+          { depVersion: '2.0.0', bpID: 'node', bpName: 'Node Buildpack', bpVersion: 'v4.5.6' },
+          { depVersion: '2.0.0', bpID: 'ruby', bpName: 'Ruby Buildpack', bpVersion: 'v5.6.7' }
         ]
       }, {
         name: 'ruby',
         buildpacks: [
-          { depVersion: '2.2.1', bpID: 'ruby', bpName: 'Ruby Buildpack', bpVersion: '5.6.7' }
+          { depVersion: '2.2.1', bpID: 'ruby', bpName: 'Ruby Buildpack', bpVersion: 'v5.6.7' }
+        ]
+      }
+    ])
+  })
+
+  it('returns secondary dependencies', () => {
+    expect(vm.secondary).to.deep.equal([
+      {
+        name: 'bundler',
+        buildpacks: [
+          { depVersion: '0.23.3', bpID: 'ruby', bpName: 'Ruby Buildpack', bpVersion: 'v5.6.8' }
         ]
       }
     ])

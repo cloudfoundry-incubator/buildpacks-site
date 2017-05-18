@@ -22,32 +22,11 @@
       <article>
         <div class="mb4">
           <h2 class="f4 fw4 condensed mt0 mb3 mid-gray">Primary Dependencies</h2>
-          <ui-collapsible
-            class="collapsible"
-            v-for="dep in primary"
-            :disableRipple="true"
-            :title="dep.name"
-            :open="dep.open"
-            :key="dep.name">
-            <div slot="header">
-              <h2 class="mv0 f5 fw4 condensed">{{dep.name}}</h2>
-            </div>
-            <div class="flex flex-wrap nl3 nr3">
-              <div class="w-100 w-33-l ph3 mb3" v-for="b in dep.buildpacks">
-                <div class="dep-list-item pa3 ba b--black-10">
-                  <h3 class="dark-gray fw4 f5 mt0 mb2">{{dep.name}} {{b.depVersion}}</h3>
-                  <ul class="list pl0 ma0">
-                    <li class="mt1">
-                      <router-link :to="{ name: 'BuildpackDetail', params: { id: b.bpID, version: b.bpVersion }}" class="blue no-underline dim">
-                        <span>{{ b.bpName }}</span>
-                        <span>v{{ b.bpVersion }}</span>
-                      </router-link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </ui-collapsible>
+          <DependencyBuildpacks :dependencies="primary" />
+        </div>
+        <div class="mb4">
+          <h2 class="f4 fw4 condensed mt0 mb3 mid-gray">Secondary Dependencies</h2>
+          <DependencyBuildpacks :dependencies="secondary" />
         </div>
       </article>
     </section>
@@ -58,13 +37,13 @@
 import Semver from 'semver'
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
-import UiCollapsible from 'keen-ui/lib/UiCollapsible'
+import DependencyBuildpacks from '@/components/DependencyBuildpacks'
 
 export default {
   props: ['buildpacks', 'primaryDeps'],
   components: {
     Multiselect,
-    UiCollapsible
+    DependencyBuildpacks
   },
   data () {
     return {
@@ -94,7 +73,7 @@ export default {
             obj[d.name] = obj[d.name] || {}
             obj[d.name][d.version] = obj[d.name][d.version] || {}
             const version = obj[d.name][d.version][b.id]
-            const newVersion = r.name.replace(/^v/, '')
+            const newVersion = r.name
             if (this._safeSemverCompare(newVersion, version) > 0) {
               obj[d.name][d.version][b.id] = newVersion
             }
@@ -111,16 +90,18 @@ export default {
     },
     primary () {
       return this.primaryDeps.map(name => {
-        var arr = []
-        for (let [depVersion, buildpacks] of Object.entries(this.categorize[name])) {
-          for (let [bpID, bpVersion] of Object.entries(buildpacks)) {
-            let bpName = this._buildpackNames[bpID]
-            arr.push({ depVersion, bpID, bpName, bpVersion })
-          }
-        }
         return {
           name,
-          buildpacks: arr.sort(this.bpCompare)
+          buildpacks: this._convertCategoriesToDeps(this.categorize[name])
+        }
+      })
+    },
+    secondary () {
+      var deps = Object.keys(this.categorize).filter(k => this.primaryDeps.indexOf(k) < 0).sort()
+      return deps.map(name => {
+        return {
+          name,
+          buildpacks: this._convertCategoriesToDeps(this.categorize[name])
         }
       })
     }
@@ -129,6 +110,16 @@ export default {
     customLabel ({ name, version }) {
       return `${name} - ${version}`
     },
+    _convertCategoriesToDeps (input) {
+      var arr = []
+      for (let [depVersion, buildpacks] of Object.entries(input)) {
+        for (let [bpID, bpVersion] of Object.entries(buildpacks)) {
+          let bpName = this._buildpackNames[bpID]
+          arr.push({ depVersion, bpID, bpName, bpVersion })
+        }
+      }
+      return arr.sort(this.bpCompare)
+    },
     _safeCompare (a, b) {
       if (a === undefined || a === null) a = ''
       if (b === undefined || b === null) b = ''
@@ -136,7 +127,7 @@ export default {
     },
     _safeSemverCompare (a, b) {
       try {
-        return Semver.compare(a, b)
+        return Semver.compare(a.replace(/^v/, ''), b.replace(/^v/, ''))
       } catch (e) {
         return this._safeCompare(a, b)
       }
