@@ -10,8 +10,12 @@ class Manifest
     begin
       manifest = client.contents(repo, path: 'manifest.yml', ref: ref)
       @manifest = YAML.load(Base64.decode64(manifest[:content]))
+      if @manifest.fetch('dependencies', []).any? { |x| x.class != Hash }
+        @manifest['no_manifest'] = true
+        @manifest['dependencies'] = @manifest['dependencies'].select { |x| x.class == Hash }
+      end
     rescue Octokit::NotFound
-      @manifest = { 'dependencies' => [] }
+      @manifest = { 'dependencies' => [], 'no_manifest' => true }
     end
   end
 
