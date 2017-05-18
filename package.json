@@ -15,10 +15,12 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "keen-ui": "^1.0.0",
     "moment": "^2.18.1",
     "semver": "^5.3.0",
     "tachyons": "^4.7.2",
     "vue": "^2.2.6",
+    "vue-multiselect": "next",
     "vue-router": "^2.3.1",
     "whatwg-fetch": "^2.0.3"
   },
