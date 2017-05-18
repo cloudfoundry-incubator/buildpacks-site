@@ -3,6 +3,7 @@ require 'octokit'
 require 'base64'
 require 'yaml'
 require 'json'
+require 'semantic'
 
 class Manifest
   def initialize(client, repo, ref)
@@ -10,7 +11,7 @@ class Manifest
       manifest = client.contents(repo, path: 'manifest.yml', ref: ref)
       @manifest = YAML.load(Base64.decode64(manifest[:content]))
     rescue Octokit::NotFound
-      @manifest = [ 'dependencies' => [] ]
+      @manifest = { 'dependencies' => [] }
     end
   end
 
@@ -27,14 +28,17 @@ class Manifest
   def eol(name, version)
     return nil unless @manifest['dependency_deprecation_dates']
     @manifest['dependency_deprecation_dates'].map do |dep|
-      if dep['name'] == name && Regexp.new(dep['match']).match(version)
-        dep['date'].to_s
+      next unless dep['name'] == name
+      if dep['match']
+        dep['date'].to_s if Regexp.new(dep['match']).match(version) rescue false
+      elsif dep['version_line']
+        Semantic::Version.new(version).satisfies?(dep['version_line'].gsub(/\.x$/,''))
       end
     end.compact.first
   end
 end
 
-client = Octokit::Client.new(access_token: 'fd2f75a4e73fddba7aac771d1038b016dc0f597c')
+client = Octokit::Client.new(access_token: '')
 repos = JSON.load(open('src/data/buildpacks.json'))
 data = repos.map do |data|
   puts data['name']
@@ -46,7 +50,8 @@ data = repos.map do |data|
     manifest = Manifest.new(client, data['repo'], r.tag_name)
     begin
       release[:dependencies] = manifest.dependencies
-    rescue
+    rescue => e
+      puts "ERROR: #{e}"
       release[:dependencies] = []
     end
     data[:releases] << release
