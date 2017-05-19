@@ -16,10 +16,10 @@ describe('SiblingVersionList.vue', () => {
     vm.$mount()
     var links = nodeListMap(
       vm.$el.querySelectorAll('a.link'),
-      el => el.textContent.trim()
+      el => el.textContent.trim().replace(/\s+/, ' ')
     )
 
-    expect(links).to.deep.equal(['v1.2.3', 'v1.2.2'])
+    expect(links).to.deep.equal(['v1.2.3 latest', 'v1.2.2'])
   })
 
   it('renders links', () => {
