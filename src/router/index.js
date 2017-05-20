@@ -5,10 +5,34 @@ import BuildpackIndex from '@/components/BuildpackIndex'
 import BuildpackDetail from '@/components/BuildpackDetail'
 import DependenciesIndex from '@/components/DependenciesIndex'
 import NotFound from '@/components/NotFound'
-import buildpacks from '@/data/buildpacks'
 import primaryDeps from '@/data/primary_deps'
 
 Vue.use(Router)
+var error = false
+var buildpacks = false
+var beforeEnter = (to, from, next) => {
+  if (buildpacks) {
+    next()
+  }
+  var oReq = new XMLHttpRequest()
+  oReq.addEventListener('load', function () {
+    if (this.status >= 200 && this.status < 300) {
+      error = false
+      buildpacks = JSON.parse(this.responseText)
+    } else {
+      error = 'Error: Could not download buildpacks data'
+      buildpacks = false
+    }
+    next()
+  })
+  oReq.addEventListener('error', function () {
+    error = 'Error: Could not download buildpacks data'
+    buildpacks = false
+    next()
+  })
+  oReq.open('GET', '/static/buildpacks.json')
+  oReq.send()
+}
 
 export default new Router({
   // mode: 'history',
@@ -19,9 +43,11 @@ export default new Router({
       name: 'Index',
       component: Index,
       meta: { pageClass: 'bg-near-white' },
+      beforeEnter,
+      props: () => { return { error } },
       children: [
-        { path: '/buildpacks', name: 'BuildpackIndex', props: { buildpacks }, component: BuildpackIndex },
-        { path: '/dependencies', name: 'DependenciesIndex', props: { buildpacks, primaryDeps }, component: DependenciesIndex }
+        { path: '/buildpacks', name: 'BuildpackIndex', props: () => { return { buildpacks } }, component: BuildpackIndex },
+        { path: '/dependencies', name: 'DependenciesIndex', props: () => { return { buildpacks, primaryDeps } }, component: DependenciesIndex }
       ]
     },
     {
@@ -29,8 +55,10 @@ export default new Router({
       name: 'BuildpackDetail',
       component: BuildpackDetail,
       meta: { pageClass: 'bg-white' },
+      beforeEnter,
       props: (route) => {
         return {
+          error: error,
           version: route.params.version,
           buildpack: buildpacks.find(b => b.id === route.params.id)
         }
