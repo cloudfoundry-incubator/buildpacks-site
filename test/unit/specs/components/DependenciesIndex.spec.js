@@ -4,10 +4,9 @@ import router from '@/router'
 import Multiselect from 'vue-multiselect'
 
 describe('DependenciesIndex.vue', () => {
-  var vm
+  var vm, buildpacks, Constructor
   beforeEach(() => {
-    const Constructor = Vue.extend(DependenciesIndex)
-    const buildpacks = [
+    buildpacks = [
       {
         id: 'node',
         name: 'Node Buildpack',
@@ -54,6 +53,7 @@ describe('DependenciesIndex.vue', () => {
         }]
       }
     ]
+    Constructor = Vue.extend(DependenciesIndex)
     vm = new Constructor({ router, propsData: { buildpacks, primaryDeps: ['node', 'ruby'] }, components: { Multiselect } }).$mount()
   })
 
@@ -106,6 +106,32 @@ describe('DependenciesIndex.vue', () => {
         ]
       }
     ])
+  })
+
+  context('a primary dependency is not in the dataset', () => {
+    beforeEach(() => {
+      vm = new Constructor({ router, propsData: { buildpacks, primaryDeps: ['node', 'missing', 'ruby'] }, components: { Multiselect } }).$mount()
+    })
+    it('returns an empty dependency', () => {
+      expect(vm.primary).to.deep.equal([
+        {
+          name: 'node',
+          buildpacks: [
+            { depVersion: '2.0.1', bpID: 'node', bpName: 'Node Buildpack', bpVersion: 'v4.5.7' },
+            { depVersion: '2.0.0', bpID: 'node', bpName: 'Node Buildpack', bpVersion: 'v4.5.6' },
+            { depVersion: '2.0.0', bpID: 'ruby', bpName: 'Ruby Buildpack', bpVersion: 'v5.6.7' }
+          ]
+        }, {
+          name: 'missing',
+          buildpacks: []
+        }, {
+          name: 'ruby',
+          buildpacks: [
+            { depVersion: '2.2.1', bpID: 'ruby', bpName: 'Ruby Buildpack', bpVersion: 'v5.6.7' }
+          ]
+        }
+      ])
+    })
   })
 
   it('returns secondary dependencies', () => {

@@ -111,6 +111,7 @@ export default {
       return `${name} - ${version}`
     },
     _convertCategoriesToDeps (input) {
+      if (!input) return []
       var arr = []
       for (let [depVersion, buildpacks] of Object.entries(input)) {
         for (let [bpID, bpVersion] of Object.entries(buildpacks)) {
