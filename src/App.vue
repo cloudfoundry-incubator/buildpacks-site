@@ -24,8 +24,8 @@ export default {
 </script>
 
 <style>
-@import url(http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
-@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto+Mono|Roboto:400,500);
+@import url(//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(//fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto+Mono|Roboto:400,500);
 
 body, html {
   height: 100%;
