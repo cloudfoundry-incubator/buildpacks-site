@@ -1,5 +1,9 @@
 <template>
-<div class="buildpackdetail mw8 center w-100 ph3 ph4-ns pv3 pv4-ns">
+<div>
+<article v-if="error">
+  <h1 style="text-align:center;margin-top:3em;">{{error}}</h1>
+</article>
+<div class="buildpackdetail mw8 center w-100 ph3 ph4-ns pv3 pv4-ns" v-if="!error">
   <div class="db">
     <router-link :to="{ name: 'BuildpackIndex' }" class="blue link f6">
       <i class="icon ion-android-arrow-back mr1"></i>
@@ -38,6 +42,7 @@
     </div>
   </div>
 </div>
+</div>
 </template>
 
 <script>
@@ -46,7 +51,7 @@ import SiblingVersionList from '@/components/SiblingVersionList'
 
 export default {
   name: 'BuildpackDetail',
-  props: ['buildpack', 'version'],
+  props: ['buildpack', 'version', 'error'],
   components: {
     SiblingVersionList,
     DependenciesTable

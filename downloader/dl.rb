@@ -5,6 +5,10 @@ require 'yaml'
 require 'json'
 require 'semantic'
 
+BUILDPACKS_JSON = File.join(File.dirname(File.expand_path(__FILE__)), 'buildpacks.json').to_s
+OUTPUT_FILE = ARGV[0] or raise "USAGE: bundle exec dl.rb [OUTPUT FILE]"
+ACCESS_TOKEN = ENV['ACCESS_TOKEN'] or raise 'Please provide github ACCESS_TOKEN as env variable'
+
 class Manifest
   def initialize(client, repo, ref)
     begin
@@ -42,8 +46,8 @@ class Manifest
   end
 end
 
-client = Octokit::Client.new(access_token: '')
-repos = JSON.load(open('src/data/buildpacks.json'))
+client = Octokit::Client.new(access_token: ACCESS_TOKEN)
+repos = JSON.load(open(BUILDPACKS_JSON))
 data = repos.map do |data|
   puts data['name']
   repo = client.repo(data['repo'])
@@ -63,6 +67,6 @@ data = repos.map do |data|
   data
 end
 
-open('src/data/buildpacks.json', 'w') do |f|
+open(OUTPUT_FILE, 'w') do |f|
   f.puts data.to_json
 end
