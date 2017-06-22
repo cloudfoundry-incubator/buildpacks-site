@@ -42,12 +42,11 @@ export default new Router({
       redirect: 'buildpacks',
       name: 'Index',
       component: Index,
-      meta: { pageClass: 'bg-near-white' },
       beforeEnter,
       props: () => { return { error } },
       children: [
-        { path: '/buildpacks', name: 'BuildpackIndex', props: () => { return { buildpacks } }, component: BuildpackIndex },
-        { path: '/dependencies', name: 'DependenciesIndex', props: () => { return { buildpacks, primaryDeps } }, component: DependenciesIndex }
+        { path: '/buildpacks', meta: { pageClass: 'bg-near-white' }, name: 'BuildpackIndex', props: () => { return { buildpacks } }, component: BuildpackIndex },
+        { path: '/dependencies', meta: { pageClass: 'bg-near-white' }, name: 'DependenciesIndex', props: () => { return { buildpacks, primaryDeps } }, component: DependenciesIndex }
       ]
     },
     {
