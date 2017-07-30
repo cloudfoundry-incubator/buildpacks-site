@@ -1,25 +1,16 @@
 <template lang="html">
   <article>
     <div class="mt0 mb2 pb3">
-      <multiselect
-        class="bp-multiselect drop-shadow"
-        v-model="value"
-        :max="1"
-        :options="dependencies"
-        :multiple="true"
-        :blockKeys="blockedKeys"
-        :close-on-select="true"
-        :clear-on-select="true"
-        :hide-selected="true"
-        placeholder="Filter by dependency name and version" label="name" track-by="name">
-        <template slot="option" scope="props">
-          <span class="fw6 condensed">{{props.option.name}}</span>
-          <span class="fw4 gray ">{{props.option.version}}</span>
-        </template>
-      </multiselect>
+      <v-select :options="dependencies" :on-change="selectVal"
+        placeholder="Filter by dependency name and version"
+        class="bp-multiselect drop-shadow"></v-select>
     </div>
     <section class="bg-white ba b--black-10 drop-shadow pa3 pa4-l">
       <article>
+        <div class="mb4" v-if="matched.length > 0">
+          <h2 class="f4 fw4 condensed mt0 mb3 mid-gray">Matched Dependencies</h2>
+          <DependencyBuildpacks :dependencies="matched" />
+        </div>
         <div class="mb4">
           <h2 class="f4 fw4 condensed mt0 mb3 mid-gray">Primary Dependencies</h2>
           <DependencyBuildpacks :dependencies="primary" />
@@ -35,19 +26,18 @@
 
 <script>
 import Semver from 'semver'
-import Multiselect from 'vue-multiselect'
-import 'vue-multiselect/dist/vue-multiselect.min.css'
+import vSelect from 'vue-select'
 import DependencyBuildpacks from '@/components/DependencyBuildpacks'
 
 export default {
   props: ['buildpacks', 'primaryDeps'],
   components: {
-    Multiselect,
+    vSelect,
     DependencyBuildpacks
   },
   data () {
     return {
-      value: [],
+      value: {},
       blockedKeys: ['Tab']
     }
   },
@@ -58,7 +48,7 @@ export default {
         for (var r of b.releases) {
           for (var d of r.dependencies) {
             if (!arr.find(a => a.name === d.name && a.version === d.version)) {
-              arr.push({ name: d.name, version: d.version })
+              arr.push({ name: d.name, version: d.version, label: `${d.name} - ${d.version}` })
             }
           }
         }
@@ -88,6 +78,24 @@ export default {
         return obj
       }, {})
     },
+    matched () {
+      const {name, version} = this.value || {}
+      if (!name || !version) return []
+      var obj = {}
+      for (var b of this.buildpacks) {
+        for (var r of b.releases) {
+          for (var d of r.dependencies) {
+            if (d.name === name && d.version === version) {
+              obj[b.name] = obj[b.name] || { 'name': b.name, 'open': true, 'buildpacks': [] }
+              obj[b.name].buildpacks.push({
+                'depVersion': version, 'bpID': b.id, 'bpName': b.name, 'bpVersion': r.name
+              })
+            }
+          }
+        }
+      }
+      return Object.values(obj)
+    },
     primary () {
       return this.primaryDeps.map(name => {
         return {
@@ -107,6 +115,9 @@ export default {
     }
   },
   methods: {
+    selectVal (val) {
+      this.value = val
+    },
     customLabel ({ name, version }) {
       return `${name} - ${version}`
     },
@@ -154,55 +165,34 @@ export default {
 </script>
 
 <style lang="css">
-.bp-multiselect.multiselect .multiselect__input,
-.bp-multiselect.multiselect .multiselect__input .multiselect__single {
-  font-size: 1.2em;
-  min-width: 305px;
+.bp-multiselect.v-select {
+  background: white;
 }
-
-.bp-multiselect .multiselect__option--disabled {
-  background: transparent;
-  font-size: 1.10em;
-  font-weight: bold;
-  color: rgba(0, 0, 0, .5)
-}
-
-.bp-multiselect .multiselect__option:not(.multiselect__option--disabled) {
-  color: #222;
-  font-size: 1.15em;
-  font-weight: 300;
-}
-
-.bp-multiselect .multiselect__option:not(.multiselect__option--disabled):after {
-  content: '';
-}
-
-.bp-multiselect .multiselect__option:not(.multiselect__option--disabled).selected {
-  background: rgba(0, 0, 0, .05);
-}
-
-.bp-multiselect .multiselect__option.multiselect__option--highlight {
-  color: #222;
-  background-color: rgba(0, 0, 0, .1)
-}
-
-.bp-multiselect .multiselect__tags {
+.bp-multiselect.v-select .dropdown-toggle {
   border-radius: 0;
-  border-color: rgba(0, 0, 0, .2);
 }
-
-.bp-multiselect .multiselect__tag {
+.bp-multiselect.v-select:before {
+    content: "\F2F5";
+    display: inline-block;
+    font-size: 1.25rem;
+    font-family: "Ionicons";
+    color: #999;
+    left: 1rem;
+    position: absolute;
+    line-height: 34px;
+}
+.bp-multiselect.v-select .dropdown-toggle {
+  padding-left: 40px;
+}
+.bp-multiselect.v-select .selected-tag {
+  color: #fff;
+  background-color: #0c9ed5;
   font-weight: bold;
-  font-size: 1em;
-}
-
-.bp-multiselect .multiselect__tag {
-  background: #0c9ed5;
-}
-
-.bp-multiselect .multiselect__tag-icon:focus,
-.bp-multiselect .multiselect__tag-icon:hover {
-  background: rgba(0, 0, 0, .2);
+  font-size: 14px;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .collapsible .ui-collapsible__header {
