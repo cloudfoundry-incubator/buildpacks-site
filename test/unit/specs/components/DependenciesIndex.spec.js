@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import DependenciesIndex from '@/components/DependenciesIndex'
 import router from '@/router'
-import Multiselect from 'vue-multiselect'
+import vSelect from 'vue-select'
+
 
 describe('DependenciesIndex.vue', () => {
   var vm, buildpacks, Constructor
@@ -54,15 +55,15 @@ describe('DependenciesIndex.vue', () => {
       }
     ]
     Constructor = Vue.extend(DependenciesIndex)
-    vm = new Constructor({ router, propsData: { buildpacks, primaryDeps: ['node', 'ruby'] }, components: { Multiselect } }).$mount()
+    vm = new Constructor({ router, propsData: { buildpacks, primaryDeps: ['node', 'ruby'] }, components: { vSelect } }).$mount()
   })
 
   it('the search bar filter has been populated with the dependencies list', () => {
     expect(vm.dependencies).to.deep.equal([
-      { name: 'bundler', version: '0.23.3' },
-      { name: 'node', version: '2.0.1' },
-      { name: 'node', version: '2.0.0' },
-      { name: 'ruby', version: '2.2.1' }
+      { name: 'bundler', version: '0.23.3', label: 'bundler - 0.23.3' },
+      { name: 'node', version: '2.0.1', label: 'node - 2.0.1' },
+      { name: 'node', version: '2.0.0', label: 'node - 2.0.0' },
+      { name: 'ruby', version: '2.2.1', label: 'ruby - 2.2.1' }
     ])
   })
 
@@ -110,7 +111,7 @@ describe('DependenciesIndex.vue', () => {
 
   context('a primary dependency is not in the dataset', () => {
     beforeEach(() => {
-      vm = new Constructor({ router, propsData: { buildpacks, primaryDeps: ['node', 'missing', 'ruby'] }, components: { Multiselect } }).$mount()
+      vm = new Constructor({ router, propsData: { buildpacks, primaryDeps: ['node', 'missing', 'ruby'] }, components: { vSelect } }).$mount()
     })
     it('returns an empty dependency', () => {
       expect(vm.primary).to.deep.equal([
