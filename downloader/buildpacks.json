@@ -65,14 +65,14 @@
   {
     "id": "hwc",
     "name": "HWC Buildpack",
-    "repo": "cloudfoundry-incubator/hwc-buildpack",
+    "repo": "cloudfoundry/hwc-buildpack",
     "docUrl": false,
     "description": "Cloud Foundry buildpack for Hosted Web Core"
   },
   {
     "id": "multi",
     "name": "Multi Buildpack",
-    "repo": "cloudfoundry-incubator/multi-buildpack",
+    "repo": "cloudfoundry/multi-buildpack",
     "docUrl": false,
     "description": "Cloud Foundry buildpack for running multiple buildpacks"
   }
