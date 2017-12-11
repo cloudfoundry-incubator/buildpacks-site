@@ -4,6 +4,7 @@ require 'base64'
 require 'yaml'
 require 'json'
 require 'semantic'
+require 'date'
 
 BUILDPACKS_JSON = File.join(File.dirname(File.expand_path(__FILE__)), 'buildpacks.json').to_s
 OUTPUT_FILE = ARGV[0] or raise "USAGE: bundle exec dl.rb [OUTPUT FILE]"
@@ -57,7 +58,7 @@ data = repos.map do |data|
   data[:releases] = []
   data[:description] = repo.description
   repo.rels[:releases].get.data.each do |r|
-    release = { name: r.tag_name, created_at: r.created_at }
+    release = { name: r.tag_name, created_at: r.created_at.iso8601 }
     manifest = Manifest.new(client, data['repo'], r.tag_name)
     begin
       release[:dependencies] = manifest.dependencies
