@@ -10,6 +10,7 @@
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Version Line</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Deprecation Date</th>
               <th class="tl bb b--black-10 pv2">{{ checksumType | uppercase }}</th>
+              <th class="tl bb b--black-10 pv2">&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +33,9 @@
                   {{ dependency[checksumType] }}
                 </span>
               </td>
+              <td class="bb b--black-10 pv2">
+                <button v-on:click="copyChecksumToClipboard(dependency[checksumType])"><img src="../assets/copy-clipboard.svg" alt="Copy checksum to clipboard" height="16px"></button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -45,6 +49,7 @@
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Version Line</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Deprecation Date</th>
               <th class="tl bb b--black-10 pv2">{{ checksumType | uppercase }}</th>
+              <th class="tl bb b--black-10 pv2">&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -67,9 +72,12 @@
                   {{ dependency[checksumType] }}
                 </span>
               </td>
+              <td class="bb b--black-10 pv2">
+                <button v-on:click="copyChecksumToClipboard(dependency[checksumType])"><img src="../assets/copy-clipboard.svg" alt="Copy checksum to clipboard" height="16px"></button>
+              </td>
             </tr>
           </tbody>
-        </table>
+        </table>|
       </article>
     </div>
     <p class="f4 black-50" v-else>
@@ -81,6 +89,7 @@
 <script>
 import semver from 'semver'
 import moment from 'moment'
+import copyToClipboard from '@/clipboard'
 
 let latestPatch = (deps, dep) => {
   deps = deps
@@ -113,6 +122,11 @@ let outdated = (deps, dep) => {
 export default {
   props: ['dependencies'],
   name: 'DependenciesTable',
+  methods: {
+    copyChecksumToClipboard (checksum) {
+      copyToClipboard(checksum)
+    }
+  },
   computed: {
     checksumType () {
       if (this.dependencies[0].sha256 != null) {
