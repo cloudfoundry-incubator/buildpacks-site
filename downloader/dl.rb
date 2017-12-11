@@ -25,7 +25,10 @@ class Manifest
 
   def dependencies
     @manifest['dependencies'].map do |d|
-      { name: d['name'], version: d['version'], md5: d['md5'], eol: eol(d['name'], d['version']) }
+      hash = { name: d['name'], version: d['version'], eol: eol(d['name'], d['version']) }
+      hash[:md5] = d['md5'] if d['md5']
+      hash[:sha256] = d['sha256'] if d['sha256']
+      hash
     end.sort_by do |d|
       [ d[:name], (Gem::Version.new(d[:version]) rescue d[:version]) ]
     end

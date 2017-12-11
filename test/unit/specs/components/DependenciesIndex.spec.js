@@ -3,7 +3,6 @@ import DependenciesIndex from '@/components/DependenciesIndex'
 import router from '@/router'
 import vSelect from 'vue-select'
 
-
 describe('DependenciesIndex.vue', () => {
   var vm, buildpacks, Constructor
   beforeEach(() => {

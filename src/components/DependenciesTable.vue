@@ -9,7 +9,7 @@
               <th class="tl bb b--black-10 pv2">Name</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Version Line</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Deprecation Date</th>
-              <th class="tl bb b--black-10 pv2">MD5</th>
+              <th class="tl bb b--black-10 pv2">{{ checksumType | uppercase }}</th>
             </tr>
           </thead>
           <tbody>
@@ -24,7 +24,14 @@
                   Unknown
                 </span>
               </td>
-              <td class="bb b--black-10 pv2">{{ dependency.md5 }}</td>
+              <td class="bb b--black-10 pv2">
+                <span v-if="checksumType == 'sha256'" :title="dependency[checksumType]">
+                  {{ dependency[checksumType].substring(0,16) }}
+                </span>
+                <span v-else>
+                  {{ dependency[checksumType] }}
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -37,7 +44,7 @@
               <th class="tl bb b--black-10 pv2">Name</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Version Line</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Deprecation Date</th>
-              <th class="tl bb b--black-10 pv2">MD5</th>
+              <th class="tl bb b--black-10 pv2">{{ checksumType | uppercase }}</th>
             </tr>
           </thead>
           <tbody>
@@ -52,7 +59,14 @@
                   Unknown
                 </span>
               </td>
-              <td class="bb b--black-10 pv2">{{ dependency.md5 }}</td>
+              <td class="bb b--black-10 pv2">
+                <span v-if="checksumType == 'sha256'" :title="dependency[checksumType]">
+                  {{ dependency[checksumType].substring(0,16) }}
+                </span>
+                <span v-else>
+                  {{ dependency[checksumType] }}
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -100,6 +114,13 @@ export default {
   props: ['dependencies'],
   name: 'DependenciesTable',
   computed: {
+    checksumType () {
+      if (this.dependencies[0].sha256 != null) {
+        return 'sha256'
+      } else {
+        return 'md5'
+      }
+    },
     regularDependencies () {
       return this.dependencies.filter(d => !outdated(this.dependencies, d))
     },

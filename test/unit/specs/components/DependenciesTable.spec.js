@@ -56,4 +56,32 @@ describe('DependenciesTable.vue', () => {
       expect(vm.outdatedDependencies).to.deep.equal([ nodejs ])
     })
   })
+
+  context('data has sha256', () => {
+    beforeEach(() => {
+      const ruby = { name: 'ruby', version: '2.1.2', sha256: 'abcd1234' }
+      propsData = { dependencies: [ ruby ] }
+
+      const Constructor = Vue.extend(DependenciesTable)
+      vm = new Constructor({ router, propsData })
+    })
+
+    it('filters regular dependencies', () => {
+      expect(vm.checksumType).to.equal('sha256')
+    })
+  })
+
+  context('data has md5 (and not sha256)', () => {
+    beforeEach(() => {
+      const ruby = { name: 'ruby', version: '2.1.2', md5: 'abcd1234' }
+      propsData = { dependencies: [ ruby ] }
+
+      const Constructor = Vue.extend(DependenciesTable)
+      vm = new Constructor({ router, propsData })
+    })
+
+    it('filters regular dependencies', () => {
+      expect(vm.checksumType).to.equal('md5')
+    })
+  })
 })

@@ -4,3 +4,7 @@ import moment from 'moment'
 Vue.filter('humanReadableDate', function (date) {
   return moment(date).format('MMM Do YYYY')
 })
+
+Vue.filter('uppercase', function (v) {
+  return v.toUpperCase()
+})
