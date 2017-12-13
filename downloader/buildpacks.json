@@ -1,59 +1,10 @@
 [
   {
-    "id": "ruby",
-    "name": "Ruby Buildpack",
-    "repo": "cloudfoundry/ruby-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/ruby/index.html",
-    "description": "Cloud Foundry buildpack for Ruby, Sinatra and Rails"
-  },
-  {
-    "id": "go",
-    "name": "Go Buildpack",
-    "repo": "cloudfoundry/go-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/go/index.html",
-    "description": "Cloud Foundry buildpack for the Go Language"
-  },
-  {
-    "id": "php",
-    "name": "PHP Buildpack",
-    "repo": "cloudfoundry/php-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/php/index.html",
-    "description": "A Cloud Foundry Buildpack for PHP."
-  },
-  {
-    "id": "staticfile",
-    "name": "Staticfile Buildpack",
-    "repo": "cloudfoundry/staticfile-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/staticfile/index.html",
-    "description": "Deploy static HTML/JS/CSS apps to Cloud Foundry"
-  },
-  {
-    "id": "python",
-    "name": "Python Buildpack",
-    "repo": "cloudfoundry/python-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/python/index.html",
-    "description": "Cloud Foundry buildpack for the Python Language"
-  },
-  {
-    "id": "nodejs",
-    "name": "Nodejs Buildpack",
-    "repo": "cloudfoundry/nodejs-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/node/index.html",
-    "description": "Cloud Foundry buildpack for Node.js"
-  },
-  {
     "id": "binary",
     "name": "Binary Buildpack",
     "repo": "cloudfoundry/binary-buildpack",
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/binary/index.html",
     "description": "Deploy binaries to Cloud Foundry"
-  },
-  {
-    "id": "java",
-    "name": "Java Buildpack",
-    "repo": "cloudfoundry/java-buildpack",
-    "docUrl": "https://docs.cloudfoundry.org/buildpacks/java/index.html",
-    "description": "Cloud Foundry buildpack for running Java applications"
   },
   {
     "id": "dotnet",
@@ -63,6 +14,13 @@
     "description": "This buildpack lets .NET Core applications run on the Linux stacks."
   },
   {
+    "id": "go",
+    "name": "Go Buildpack",
+    "repo": "cloudfoundry/go-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/go/index.html",
+    "description": "Cloud Foundry buildpack for the Go Language"
+  },
+  {
     "id": "hwc",
     "name": "HWC Buildpack",
     "repo": "cloudfoundry/hwc-buildpack",
@@ -70,10 +28,52 @@
     "description": "Cloud Foundry buildpack for Hosted Web Core"
   },
   {
+    "id": "java",
+    "name": "Java Buildpack",
+    "repo": "cloudfoundry/java-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/java/index.html",
+    "description": "Cloud Foundry buildpack for running Java applications"
+  },
+  {
     "id": "multi",
     "name": "Multi Buildpack",
     "repo": "cloudfoundry/multi-buildpack",
     "docUrl": false,
     "description": "Cloud Foundry buildpack for running multiple buildpacks"
+  },
+  {
+    "id": "nodejs",
+    "name": "Nodejs Buildpack",
+    "repo": "cloudfoundry/nodejs-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/node/index.html",
+    "description": "Cloud Foundry buildpack for Node.js"
+  },
+  {
+    "id": "php",
+    "name": "PHP Buildpack",
+    "repo": "cloudfoundry/php-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/php/index.html",
+    "description": "A Cloud Foundry Buildpack for PHP."
+  },
+  {
+    "id": "python",
+    "name": "Python Buildpack",
+    "repo": "cloudfoundry/python-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/python/index.html",
+    "description": "Cloud Foundry buildpack for the Python Language"
+  },
+  {
+    "id": "ruby",
+    "name": "Ruby Buildpack",
+    "repo": "cloudfoundry/ruby-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/ruby/index.html",
+    "description": "Cloud Foundry buildpack for Ruby, Sinatra and Rails"
+  },
+  {
+    "id": "staticfile",
+    "name": "Staticfile Buildpack",
+    "repo": "cloudfoundry/staticfile-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/staticfile/index.html",
+    "description": "Deploy static HTML/JS/CSS apps to Cloud Foundry"
   }
 ]
