@@ -34,7 +34,7 @@
                 </span>
               </td>
               <td class="bb b--black-10 pv2">
-                <button v-on:click="copyChecksumToClipboard(dependency[checksumType])"><img src="../assets/copy-clipboard.svg" alt="Copy checksum to clipboard" height="16px"></button>
+                <button v-on:click="copyChecksumToClipboard(dependency[checksumType])"><img src="../assets/copy-clipboard.svg" alt="Copy checksum to clipboard" height="16px" style="vertical-align:middle"></button>
               </td>
             </tr>
           </tbody>
@@ -73,7 +73,7 @@
                 </span>
               </td>
               <td class="bb b--black-10 pv2">
-                <button v-on:click="copyChecksumToClipboard(dependency[checksumType])"><img src="../assets/copy-clipboard.svg" alt="Copy checksum to clipboard" height="16px"></button>
+                <button v-on:click="copyChecksumToClipboard(dependency[checksumType])"><img src="../assets/copy-clipboard.svg" alt="Copy checksum to clipboard" height="16px" style="vertical-align:middle"></button>
               </td>
             </tr>
           </tbody>
