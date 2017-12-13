@@ -12,7 +12,7 @@
     "repo": "cloudfoundry/dotnet-core-buildpack",
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/dotnet-core/index.html",
     "description": "This buildpack lets .NET Core applications run on the Linux stacks.",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Microsoft_.NET_logo.png"
+    "logo": "/static/logos/microsoft_.net_logo.png"
   },
   {
     "id": "go",
@@ -20,7 +20,7 @@
     "repo": "cloudfoundry/go-buildpack",
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/go/index.html",
     "description": "Cloud Foundry buildpack for the Go Language",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Gophercolor.jpg/1024px-Gophercolor.jpg"
+    "logo": "/static/logos/gophercolor.jpg"
   },
   {
     "id": "hwc",
@@ -35,7 +35,7 @@
     "repo": "cloudfoundry/java-buildpack",
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/java/index.html",
     "description": "Cloud Foundry buildpack for running Java applications",
-    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/212px-Java_programming_language_logo.svg.png"
+    "logo": "/static/logos/java.png"
   },
   {
     "id": "multi",
@@ -50,7 +50,7 @@
     "repo": "cloudfoundry/nodejs-buildpack",
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/node/index.html",
     "description": "Cloud Foundry buildpack for Node.js",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/330px-Node.js_logo.svg.png"
+    "logo": "/static/logos/nodejs.png"
   },
   {
     "id": "php",
@@ -58,7 +58,7 @@
     "repo": "cloudfoundry/php-buildpack",
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/php/index.html",
     "description": "A Cloud Foundry Buildpack for PHP.",
-    "logo": "http://php.net/images/logos/php-med-trans.png"
+    "logo": "/static/logos/php-med-trans.png"
   },
   {
     "id": "python",
@@ -66,7 +66,7 @@
     "repo": "cloudfoundry/python-buildpack",
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/python/index.html",
     "description": "Cloud Foundry buildpack for the Python Language",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
+    "logo": "/static/logos/python-logo-notext.svg"
   },
   {
     "id": "ruby",
@@ -74,7 +74,7 @@
     "repo": "cloudfoundry/ruby-buildpack",
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/ruby/index.html",
     "description": "Cloud Foundry buildpack for Ruby, Sinatra and Rails",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Ruby_logo.svg/2000px-Ruby_logo.svg"
+    "logo": "/static/logos/ruby_logo.png"
   },
   {
     "id": "staticfile",
