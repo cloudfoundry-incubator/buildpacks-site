@@ -35,7 +35,7 @@ var beforeEnter = (to, from, next) => {
 }
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -45,7 +45,7 @@ export default new Router({
       beforeEnter,
       props: () => { return { error } },
       children: [
-        { path: '/buildpacks', meta: { pageClass: 'bg-near-white' }, name: 'BuildpackIndex', props: () => { return { buildpacks } }, component: BuildpackIndex },
+        { path: '/', meta: { pageClass: 'bg-near-white' }, name: 'BuildpackIndex', props: () => { return { buildpacks } }, component: BuildpackIndex },
         { path: '/dependencies', meta: { pageClass: 'bg-near-white' }, name: 'DependenciesIndex', props: () => { return { buildpacks, primaryDeps } }, component: DependenciesIndex }
       ]
     },
