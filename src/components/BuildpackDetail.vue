@@ -30,7 +30,10 @@
     <div class="w-100 w-70-ns ph4-ns">
       <div class="mb2">
         <h4 class="f5 fw4 condensed mb2 gray">Release Date</h4>
-        <p class="f4 lh-copy measure-wide mt0 mb3">{{ release.created_at | humanReadableDate }}</p>
+        <p class="f4 lh-copy measure-wide mt0 mb3">
+          {{ release.created_at | humanReadableDate }}
+          <span class="f5 ml1 gray">({{ release.created_at | timeElapsed }})</span>
+        </p>
       </div>
       <div class="mb2">
         <DependenciesTable :dependencies="release.dependencies"></DependenciesTable>

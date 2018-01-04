@@ -8,3 +8,7 @@ Vue.filter('humanReadableDate', function (date) {
 Vue.filter('uppercase', function (v) {
   return v.toUpperCase()
 })
+
+Vue.filter('timeElapsed', function (date) {
+  return moment(date).fromNow()
+})
