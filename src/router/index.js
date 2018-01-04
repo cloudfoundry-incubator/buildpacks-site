@@ -30,7 +30,7 @@ var beforeEnter = (to, from, next) => {
     buildpacks = false
     next()
   })
-  oReq.open('GET', '/static/buildpacks.json')
+  oReq.open('GET', 'https://buildpacks-site.s3.amazonaws.com/buildpacks.json')
   oReq.send()
 }
 

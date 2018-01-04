@@ -27,14 +27,7 @@ module.exports = {
     autoOpenBrowser: false,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      '/static/buildpacks.json': {
-        target: 'https://buildpacks.cloudfoundry.org/static/buildpacks.json',
-        logLevel: 'debug',
-        ignorePath: true,
-        changeOrigin: true
-      }
-    },
+    proxyTable: {},
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
