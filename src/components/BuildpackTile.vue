@@ -28,13 +28,13 @@
               </router-link>
             </h2>
           </div>
-          <div class="ml4">
+          <div class="ml2">
             <h4 class="condensed f6 fw4 ma0 black-50">Released</h4>
-            <h2 class="fw4 f5 mb0 mt2 mid-gray" style="white-space:nowrap;">
+            <h2 class="fw4 f5 mb0 mt2 mid-gray">
               {{ latestVersion.created_at | humanReadableDate }}
             </h2>
           </div>
-          <div class="ml4" v-if="buildpack.logo" style="align-self:center">
+          <div class="ml2" v-if="buildpack.logo" style="align-self:center">
             <img :src="buildpack.logo" style="max-width:41px;max-height:41px;">
           </div>
         </div>
