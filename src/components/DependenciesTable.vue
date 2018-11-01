@@ -9,6 +9,7 @@
               <th class="tl bb b--black-10 pv2">Name</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Version Line</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Deprecation Date</th>
+              <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Stack(s)</th>
               <th class="tl bb b--black-10 pv2">{{ checksumType | uppercase }}</th>
               <th class="tl bb b--black-10 pv2">&nbsp;</th>
             </tr>
@@ -25,6 +26,7 @@
                   Unknown
                 </span>
               </td>
+              <td class="bb b--black-10 pv2">{{dependency.stack}}</td>
               <td class="bb b--black-10 pv2">
                 <span v-if="checksumType == 'sha256'" :title="dependency[checksumType]">
                   {{ dependency[checksumType].substring(0,16) }}
@@ -48,6 +50,7 @@
               <th class="tl bb b--black-10 pv2">Name</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Version Line</th>
               <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Deprecation Date</th>
+              <th class="tl bb b--black-10 pv2" style="min-width: 100px;">Stack(s)</th>
               <th class="tl bb b--black-10 pv2">{{ checksumType | uppercase }}</th>
               <th class="tl bb b--black-10 pv2">&nbsp;</th>
             </tr>
@@ -64,6 +67,7 @@
                   Unknown
                 </span>
               </td>
+              <td class="bb b--black-10 pv2">{{dependency.stack}}</td>
               <td class="bb b--black-10 pv2">
                 <span v-if="checksumType == 'sha256'" :title="dependency[checksumType]">
                   {{ dependency[checksumType].substring(0,16) }}

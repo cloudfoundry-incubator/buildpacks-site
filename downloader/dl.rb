@@ -26,7 +26,7 @@ class Manifest
 
   def dependencies
     @manifest['dependencies'].map do |d|
-      hash = { name: d['name'], version: d['version'], eol: eol(d['name'], d['version']) }
+      hash = { name: d['name'], version: d['version'], eol: eol(d['name'], d['version']), stack: d['cf_stacks'].join(",") }
       hash[:md5] = d['md5'] if d['md5']
       hash[:sha256] = d['sha256'] if d['sha256']
       hash
