@@ -91,7 +91,7 @@
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0",
-    "webpack-s3-plugin": "^1.0.3"
+    "webpack-s3-plugin": "1.0.0-rc.0"
   },
   "engines": {
     "node": "^8.2.0",
