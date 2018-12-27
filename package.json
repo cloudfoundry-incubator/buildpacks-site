@@ -94,7 +94,7 @@
     "webpack-s3-plugin": "^1.0.0-rc.0"
   },
   "engines": {
-    "node": "^10.13.0",
+    "node": "^8.2.0",
     "npm": "^6.4.0"
   },
   "browserslist": [
