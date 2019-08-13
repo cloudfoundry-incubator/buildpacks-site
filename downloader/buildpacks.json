@@ -45,6 +45,14 @@
     "description": "Cloud Foundry buildpack for running multiple buildpacks"
   },
   {
+    "id": "nginx",
+    "name": "NGINX Buildpack",
+    "repo": "cloudfoundry/nginx-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/nginx/index.html",
+    "description": "Cloud Foundry buildpack for NGINX",
+    "logo": "/static/logos/nginx.png"
+  },
+  {
     "id": "nodejs",
     "name": "Nodejs Buildpack",
     "repo": "cloudfoundry/nodejs-buildpack",
@@ -67,6 +75,14 @@
     "docUrl": "https://docs.cloudfoundry.org/buildpacks/python/index.html",
     "description": "Cloud Foundry buildpack for the Python Language",
     "logo": "/static/logos/python-logo-notext.svg"
+  },
+  {
+    "id": "r",
+    "name": "R Buildpack",
+    "repo": "cloudfoundry/r-buildpack",
+    "docUrl": "https://docs.cloudfoundry.org/buildpacks/r/index.html",
+    "description": "Cloud Foundry buildpack for R",
+    "logo": "/static/logos/R.png"
   },
   {
     "id": "ruby",
