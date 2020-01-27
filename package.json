@@ -10,7 +10,7 @@
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
-    "e2e": "testcafe 'chrome:headless --no-sandbox' test/e2e/*.test.js --app \"npm run dev\" --app-init-delay 1000 -S -s screenshots",
+    "e2e": "testcafe 'chrome:headless --no-sandbox' test/e2e/*.test.js --app \"npm run dev\" --app-init-delay 5000 -S -s screenshots",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
