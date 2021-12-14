@@ -44,7 +44,11 @@ class Manifest
       if dep['match']
         dep['date'].to_s if Regexp.new(dep['match']).match(version) rescue false
       elsif dep['version_line']
-        dep['date'].to_s if Semantic::Version.new(version).satisfies?(dep['version_line'].gsub(/\.x$/,'')) rescue version == dep['version_line']
+        if dep['version_line'].include?('x.x')
+          dep['date'].to_s if Semantic::Version.new(version).satisfies?(dep['version_line'].gsub(/\.x\.x$/,'')) rescue version == dep['version_line']
+        else
+          dep['date'].to_s if Semantic::Version.new(version).satisfies?(dep['version_line'].gsub(/\.x$/,'')) rescue version == dep['version_line']
+        end
       end
     end.compact.first
   end
